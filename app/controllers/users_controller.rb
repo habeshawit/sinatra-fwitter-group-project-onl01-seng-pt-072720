@@ -49,7 +49,11 @@ class UsersController < ApplicationController
         erb :"users/logout"
       end
 
-      
+    get '/users/:slug' do
+        @user = User.find_slug(params[:slug])
+      erb :"users/show"  
+        
+    end
     
     
 

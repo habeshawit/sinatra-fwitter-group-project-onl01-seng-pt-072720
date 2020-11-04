@@ -18,16 +18,28 @@ class TweetsController < ApplicationController
     get '/tweets/new' do
         if Helpers.is_logged_in?(session)
             erb :"tweets/new"
+        else
+            redirect to "users/login"
         end
+
     end
 
     post '/tweets' do
         user = Helpers.current_user(session)
-        
-        tweet = Tweet.create(:content => params["content"], :user_id => user.id)
+        if !params["content"].empty?
+            tweet = Tweet.create(:content => params["content"], :user_id => user.id)
+            if tweet.save && tweet.content != "" 
+                redirect "/tweets"
+            end   
+        else
+            redirect "/tweets/new"
+        end
+
+    end
+
     
-        redirect to '/tweets'
-      end
+
+    
     
     
 end
