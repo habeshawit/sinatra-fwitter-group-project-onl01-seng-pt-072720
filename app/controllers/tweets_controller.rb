@@ -55,7 +55,7 @@ class TweetsController < ApplicationController
     end
 
     patch '/tweets/:id/edit' do
-        if Helpers.is_logged_in?(session)
+        if Helpers.is_logged_in?(session) && Helpers.current_user(session).id == @tweet.user_id
             @tweet = Tweet.find_by(id: params[:id])
             @tweet.update(content: params[:content])
             @tweet.save
