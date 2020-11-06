@@ -5,7 +5,6 @@ class TweetsController < ApplicationController
     end
 
     get '/tweets' do
-        # @tweets = Tweet.all
         if !Helpers.is_logged_in?(session)
             redirect to '/login'
         else
