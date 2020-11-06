@@ -50,9 +50,9 @@ class UsersController < ApplicationController
       end
 
     get '/users/:slug' do
-        @user = User.find_slug(params[:slug])
-      erb :"users/show"  
-        
+      slug = params[:slug]
+      @user = User.find_by_slug(slug)
+      erb :"users/show"
     end
     
     
