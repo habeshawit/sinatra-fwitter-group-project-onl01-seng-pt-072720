@@ -41,6 +41,7 @@ class UsersController < ApplicationController
 
       get '/logout' do
         if Helpers.is_logged_in?(session)
+          session.clear
             redirect to '/login'
         else
             redirect to 'views/index'
@@ -54,7 +55,6 @@ class UsersController < ApplicationController
       @user = User.find_by_slug(slug)
       erb :"users/show"
     end
-    
     
 
 end

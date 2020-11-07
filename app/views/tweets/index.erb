@@ -3,6 +3,7 @@
   <% @tweets.each do |tweet| %>
     <h4>Tweet: <%= tweet.content %></h4>
     <p><a href="/tweets/<%= tweet.id %>">More details</a></p>
+    <h5> <%= @user.username %></h5>
   <% end %>
   <a href="/logout"><button>Log Out</button></a>
 </div>
